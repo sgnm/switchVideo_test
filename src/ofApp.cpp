@@ -3,11 +3,16 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     
+    ofEnableAlphaBlending();
+    // 動画読み込む前にフォーマットを指定してあげる必要がある
+    vidDefault.setPixelFormat(OF_PIXELS_RGBA);
+    vidAction.setPixelFormat(OF_PIXELS_RGBA);
+    
     vidDefault.loadMovie("intaraction_hugu_default.mov");
     vidAction.loadMovie("intaraction_hugu_action.mov");
     
     vidDefault.play();
-//    vidAction.play();
+    vidAction.play();
     
     // ループをOFFに設定
     vidAction.setLoopState(OF_LOOP_NONE);
@@ -23,6 +28,7 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+    ofSetColor(255);
     vidAction.draw(0, 0); //1280*720
     vidDefault.draw(0, 0);
     if (bDrawMode) {
