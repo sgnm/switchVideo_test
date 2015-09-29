@@ -19,8 +19,10 @@ class ofApp : public ofBaseApp{
 		void dragEvent(ofDragInfo dragInfo);
 		void gotMessage(ofMessage msg);
     
-    ofVideoPlayer vidDefault;
-    ofVideoPlayer vidAction;
+    ofVideoPlayer intDark;
+    ofVideoPlayer baseDark;
+    ofVideoPlayer intLight;
+    ofVideoPlayer baseLight;
     
     bool bDrawMode = true;
     
@@ -28,5 +30,9 @@ class ofApp : public ofBaseApp{
     ofPoint mouse;
     
     float dist;
+    
+    int thresFrame;
+    
+    bool bPlay;
 		
 };
