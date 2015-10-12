@@ -3,23 +3,23 @@
 //--------------------------------------------------------------
 void ofApp::setup(){
     ofSetFrameRate(30);
-    
+    ofToggleFullscreen();
     ofEnableAlphaBlending();
     // 動画読み込む前にフォーマットを指定してあげる必要がある
-    intDark.setPixelFormat(OF_PIXELS_RGBA);
-    baseDark.setPixelFormat(OF_PIXELS_RGBA);
-    intLight.setPixelFormat(OF_PIXELS_RGBA);
-    baseLight.setPixelFormat(OF_PIXELS_RGBA);
-    
-    intDark.loadMovie("1_TDW_movie_intaraction_hugu_default&action.mov");
-    baseDark.loadMovie("2_TDW_movie_test_base_1920x1080_rev02.mov");
-    intLight.loadMovie("3_TDW_movie_intaraction_hugu_default.mov");
-    baseLight.loadMovie("4_TDW_movie_test_light_1920x1080_rev02.mov");
-    
-    intDark.play();
-    baseDark.play();
-    intLight.play();
-    baseLight.play();
+//    intDark.setPixelFormat(OF_PIXELS_RGBA);
+//    baseDark.setPixelFormat(OF_PIXELS_RGBA);
+//    intLight.setPixelFormat(OF_PIXELS_RGBA);
+//    baseLight.setPixelFormat(OF_PIXELS_RGBA);
+//    
+//    intDark.loadMovie("1_TDW_movie_intaraction_hugu_default&action.mov");
+//    baseDark.loadMovie("2_TDW_movie_test_base_1920x1080_rev02.mov");
+//    intLight.loadMovie("3_TDW_movie_intaraction_hugu_default.mov");
+//    baseLight.loadMovie("4_TDW_movie_test_light_1920x1080_rev02.mov");
+//    
+//    intDark.play();
+//    baseDark.play();
+//    intLight.play();
+//    baseLight.play();
     
     // ループをOFFに設定
     intDark.setLoopState(OF_LOOP_NONE);
@@ -27,25 +27,30 @@ void ofApp::setup(){
     thresFrame = 178;
     
     bPlay = true;
+    
+    movie.setup("intaraction_hugu_default&action.mov", ofVec2f(500, 500), 0, 0);
 }
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    intDark.update();
-    baseDark.update();
-    intLight.update();
-    baseLight.update();
+//    intDark.update();
+//    baseDark.update();
+//    intLight.update();
+//    baseLight.update();
+    
+    movie.update();
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-    ofSetColor(255);
-    baseLight.draw(0, 0); // 1920*1080
-    intLight.draw(0, 0); // 1280*720
-    baseDark.draw(0, 0); // 1920*1080
-    intDark.draw(0, 0); // 1280*720
+//    ofSetColor(255);
+//    baseLight.draw(0, 0); // 1920*1080
+//    intLight.draw(0, 0); // 1280*720
+//    baseDark.draw(0, 0); // 1920*1080
+//    intDark.draw(0, 0); // 1280*720
+    movie.draw(movie.pos);
     
-    center = ofPoint(intDark.width/2, intDark.height/2);
+    center = movie.pos;
     ofCircle(center, 10);
     ofCircle(mouse, 10);
     ofLine(mouse, center);

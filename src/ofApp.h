@@ -1,6 +1,7 @@
 #pragma once
 
 #include "ofMain.h"
+#include "interactMovie.h"
 
 class ofApp : public ofBaseApp{
 
@@ -34,5 +35,7 @@ class ofApp : public ofBaseApp{
     int thresFrame;
     
     bool bPlay;
+    
+    interactMovie movie;
 		
 };
