@@ -76,22 +76,18 @@ void ofApp::draw(){
     
     if (dist < 150) {
         if (intDark.getIsMovieDone()) {
-            cout << "bPlay = false" << endl;
-            bPlay = false;
+            bPlay = false; //1回だけ再生するよう処理
         }
         if (bPlay) {
             if (intDark.getCurrentFrame() == thresFrame) {
-                intDark.setFrame(thresFrame + 1);
+                intDark.setFrame(thresFrame + 1); // A->Bに飛ぶ
             }
-        }else{
-            if (intDark.getCurrentFrame() > thresFrame) {
-                cout << "hoge" << endl;
-                intDark.setFrame(0);
-            }
+        }else if(intDark.getCurrentFrame() > thresFrame){
+            intDark.setFrame(0); // エリア内でも1回再生終わったらループ
         }
     }else{
         if (intDark.getCurrentFrame() > thresFrame) {
-            intDark.setFrame(0);
+            intDark.setFrame(0); // エリア外でループさせるための処理
         }
         bPlay = true;
     }
