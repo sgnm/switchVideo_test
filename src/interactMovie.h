@@ -19,10 +19,13 @@ public:
     
     ofVec2f pos;
     string name;
+    ofVec2f center;
+    bool bDistEvent;
     
 private:
     int frame;
     float speed;
+    int distFromMouse;
 };
 
 #endif /* defined(__switchVideo_test__interactMovie__) */

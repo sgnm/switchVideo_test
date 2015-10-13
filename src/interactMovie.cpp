@@ -17,6 +17,7 @@ void interactMovie::setup(string _fileName, ofVec2f _center, int _frame, float _
     this->play();
     this->setLoopState(OF_LOOP_NONE);
     
+    center = _center;
     pos = _center - ofVec2f(this->width/2, this->height/2);
     frame = _frame;
     speed = _speed;

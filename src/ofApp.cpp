@@ -39,6 +39,25 @@ void ofApp::update(){
 //    baseLight.update();
     
     movie.update();
+    
+    dist = movie.center.distance(ofVec2f(mouseX, mouseY));
+    cout << dist << endl;
+    
+    //インタラクティブ処理
+    if (dist < 150) {
+        movie.bDistEvent = true;
+        if (movie.bDistEvent) {
+            if(movie.getCurrentFrame() == thresFrame){
+                movie.setFrame(thresFrame + 1);
+            }
+        }
+    }
+    
+    if (!movie.bDistEvent) {
+        if (movie.getCurrentFrame() > thresFrame) {
+            movie.setFrame(0);
+        }
+    }
 }
 
 //--------------------------------------------------------------
@@ -50,10 +69,9 @@ void ofApp::draw(){
 //    intDark.draw(0, 0); // 1280*720
     movie.draw(movie.pos);
     
-    center = movie.pos;
-    ofCircle(center, 10);
+    ofCircle(movie.center, 10);
     ofCircle(mouse, 10);
-    ofLine(mouse, center);
+    ofLine(mouse, movie.center);
     
 //    if (bDrawMode) {
 //        intLight.draw(0, 0);
@@ -79,25 +97,25 @@ void ofApp::draw(){
 //        bDrawMode = false;
 //    }
     
-    if (dist < 150) {
-        if (intDark.getIsMovieDone()) {
-            bPlay = false; //1回だけ再生するよう処理
-        }
-        if (bPlay) {
-            if (intDark.getCurrentFrame() == thresFrame) {
-                intDark.setFrame(thresFrame + 1); // A->Bに飛ぶ
-            }
-        }else if(intDark.getCurrentFrame() > thresFrame){
-            intDark.setFrame(0); // エリア内でも1回再生終わったらループ
-        }
-    }else{
-        if (intDark.getCurrentFrame() > thresFrame) {
-            intDark.setFrame(0); // エリア外でループさせるための処理
-        }
-        bPlay = true;
-    }
+//    if (dist < 150) {
+//        if (intDark.getIsMovieDone()) {
+//            bPlay = false; //1回だけ再生するよう処理
+//        }
+//        if (bPlay) {
+//            if (intDark.getCurrentFrame() == thresFrame) {
+//                intDark.setFrame(thresFrame + 1); // A->Bに飛ぶ
+//            }
+//        }else if(intDark.getCurrentFrame() > thresFrame){
+//            intDark.setFrame(0); // エリア内でも1回再生終わったらループ
+//        }
+//    }else{
+//        if (intDark.getCurrentFrame() > thresFrame) {
+//            intDark.setFrame(0); // エリア外でループさせるための処理
+//        }
+//        bPlay = true;
+//    }
     
-    ofDrawBitmapString("correntFrame: " + ofToString(intDark.getCurrentFrame()), 20, 20);
+    ofDrawBitmapString("correntFrame: " + ofToString(movie.getCurrentFrame()), 20, 20);
     ofDrawBitmapString("thresFrame: " + ofToString(thresFrame), 20, 40);
     
 }
